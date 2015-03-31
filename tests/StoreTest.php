@@ -24,6 +24,20 @@
 			//Assert
 			$this->assertEquals($name, $result);
 		}
+
+		function test_getId()
+		{
+			//Arrange
+			$name = "Foot Traffic";
+			$id = 1;
+			$test_store = new Store ($name, $id);
+
+			//Act
+			$result = $test_store->getId();
+
+			//Assert
+			$this->assertEquals($id, $result);
+		}
 	}
 
 ?>
