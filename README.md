@@ -1,3 +1,13 @@
+##Shoe Store Brand Inventory##
+
+This app holds a dynamic list of local shoe stores and lists the brands of shoes each store carries.  When a user views a single store, the app shows a list of all shoe brands carried by that store.  Users can add shoe brands to that particular store list or, when viewing a single brand, can add additional stores where that brand is carried.
+
+#Setup instructions:#
+1. Clone this repository
+2.
+
+
+
 #PSQL COMMANDS:#
 
 CREATE DATABASE shoes;
