@@ -53,7 +53,14 @@
 			}
 			return $stores;
 		}
-		
+
+	//UPDATE
+		function updateStore($new_store)
+		{
+			$GLOBALS['DB']->exec("UPDATE stores SET store_name = '{$new_store} WHERE id = {$this->getId()};");
+			$this->setName($new_store);
+		}
+
 	//DELETE
 		static function deleteAll()
 		{

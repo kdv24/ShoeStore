@@ -15,7 +15,7 @@
 		{
 			Store::deleteAll();
 		}
-		
+
 		function test_getName()
 		{
 			//Arrange
@@ -42,6 +42,21 @@
 
 			//Assert
 			$this->assertEquals($id, $result);
+		}
+
+		function test_setId()
+		{
+			//Arrange
+			$name = "Foot Traffic";
+			$id = null;
+			$test_store = new Store($name, $id);
+
+			//Act
+			$test_store->setId(2);
+
+			//Assert
+			$result = $test_store->getId();
+			$this->assertEquals(2, $result);
 		}
 
 		function test_save()
@@ -77,6 +92,23 @@
 
 			//Assert
 			$this->assertEquals([$test_store, $test_store2], $result);
+		}
+
+		function test_updateStore()
+		{
+			//Arrange
+			$name = "Foot Traffic";
+			$id = null;
+			$test_store = new Store($name, $id);
+
+			$test_store->save();
+			$new_store = "Fit Right";
+
+			//Act
+			$test_store->updateStore($new_store);
+
+			//Assert
+			$this->assertEquals($test_store->getName(), $new_store);
 		}
 	}
 
