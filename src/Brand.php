@@ -33,6 +33,31 @@
 		}
 
 	//DB FUNCTIONS	
+		function save()
+		{
+			$statement = $GLOBALS['DB']->query("INSERT INTO brands (brand_name) VALUES ('{$this->getBrandName()}') RETURNING id;");
+			$result = $statement->fetch(PDO::FETCH_ASSOC);
+			$this->setId($result['id']);
+		}
+
+		static function getAll()
+		{
+			$returned_brands = $GLOBALS['DB']->query("SELECT * FROM brands");
+			$brands = array();
+
+			foreach ($returned_brands as $brand) {
+				$brand_name = $brand ["brand_name"];
+				$id = $brand ['id'];
+				$new_brand_name = new Brand ($brand_name, $id);
+				array_push($brands, $new_brand_name);
+			}
+			return $brands;
+		}
+
+		static function deleteAll()
+		{
+			$GLOBALS['DB']->exec("DELETE FROM brands *;");
+		}
 	}
 
 ?>
