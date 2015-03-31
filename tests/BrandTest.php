@@ -38,5 +38,20 @@
     		//Assert
     		$this->assertEquals($id, $result);
     	}
+
+    	function test_setId()
+    	{
+    		//Arrange
+    		$brand_name = "Nike";
+    		$id = null;
+    		$test_brand_name = new Brand ($brand_name, $id);
+
+    		//Act
+    		$test_brand_name->setId(2);
+
+    		//Assert
+    		$result = $test_brand_name->getId();
+    		$this->assertEquals(2, $result);
+    	}
     }
 ?>

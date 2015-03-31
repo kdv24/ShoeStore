@@ -22,6 +22,15 @@
 		}
 	
 	//SETTERS
+		function setBrandName($new_brand_name)
+		{
+			$this->brand_name = (string) $new_brand_name;
+		}
+
+		function setId($new_id)
+		{
+			$this->id = (int) $new_id;
+		}
 
 	//DB FUNCTIONS	
 	}
