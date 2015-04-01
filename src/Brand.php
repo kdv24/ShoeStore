@@ -54,10 +54,46 @@
 			return $brands;
 		}
 
+	//DELETE FUNCTIONS
 		static function deleteAll()
 		{
 			$GLOBALS['DB']->exec("DELETE FROM brands *;");
 		}
+
+		function deleteBrand()
+		{
+			$GLOBALS['DB']->exec("DELETE FROM brands WHERE id = {$this->getId()};");
+		}
+
+	//JOIN STORES TO BRANDS
+		function addStore($store)
+		{
+			$GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$this->getId()}, {$store->getId()});");
+		}
+
+		function getStores()
+		{
+			$query = $GLOBALS['DB']->query("SELECT stores.* FROM
+				brands	JOIN brands_stores ON (brands.id = brands_stores.brand_id)
+						JOIN stores ON (brands_stores.store_id = store.id)
+						WHERE brands.id = {$this->getId()};");
+			$store_ids = $query->fetchAll(PDO::FETCH_ASSOC);
+
+			$stores = array();
+			foreach ($store_ids as $store) {
+				$store_name = $store['store_name'];
+				$id = $store['id'];
+				$new_store = new Store ($store_name, $id);
+			}
+			return $stores;
+		}
 	}
 
 ?>
+
+
+
+
+
+
+
