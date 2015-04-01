@@ -6,6 +6,7 @@
     */
 
 	require_once "src/Store.php";
+	require_once "src/Brand.php";
 
 	$DB = new PDO('pgsql:host=localhost;dbname=shoes_test');
 
@@ -19,23 +20,23 @@
 		function test_getName()
 		{
 			//Arrange
-			$name = "Foot Traffic";
+			$store_name = "Foot Traffic";
 			$id = 1;
-			$test_store = new Store ($name, $id);
+			$test_store = new Store ($store_name, $id);
 
 			//Act
-			$result = $test_store->getName();
+			$result = $test_store->getStoreName();
 
 			//Assert
-			$this->assertEquals($name, $result);
+			$this->assertEquals($store_name, $result);
 		}
 
 		function test_getId()
 		{
 			//Arrange
-			$name = "Foot Traffic";
+			$store_name = "Foot Traffic";
 			$id = 1;
-			$test_store = new Store ($name, $id);
+			$test_store = new Store ($store_name, $id);
 
 			//Act
 			$result = $test_store->getId();
@@ -47,9 +48,9 @@
 		function test_setId()
 		{
 			//Arrange
-			$name = "Foot Traffic";
+			$store_name = "Foot Traffic";
 			$id = null;
-			$test_store = new Store($name, $id);
+			$test_store = new Store($store_name, $id);
 
 			//Act
 			$test_store->setId(2);
@@ -62,9 +63,9 @@
 		function test_save()
 		{
 			//Arrange
-			$name = "Foot Traffic";
+			$store_name = "Foot Traffic";
 			$id = null;
-			$test_store = new Store ($name, $id);
+			$test_store = new Store ($store_name, $id);
 
 			//Act
 			$test_store->save();
@@ -77,13 +78,13 @@
 		function test_getAll()
 		{
 			//Arrange
-			$name = "Foot Traffic";
+			$store_name = "Foot Traffic";
 			$id = null;
-			$test_store = new Store($name, $id);
+			$test_store = new Store($store_name, $id);
 
-			$name2 = "Fit Right";
+			$store_name2 = "Fit Right";
 			$id2= null;
-			$test_store2 = new Store($name2, $id2);
+			$test_store2 = new Store($store_name2, $id2);
 
 			//Act
 			$test_store->save();
@@ -97,9 +98,9 @@
 		function test_updateStore()
 		{
 			//Arrange
-			$name = "Foot Traffic";
+			$store_name = "Foot Traffic";
 			$id = null;
-			$test_store = new Store($name, $id);
+			$test_store = new Store($store_name, $id);
 
 			$test_store->save();
 			$new_store = "Fit Right";
@@ -108,20 +109,20 @@
 			$test_store->updateStore($new_store);
 
 			//Assert
-			$this->assertEquals($test_store->getName(), $new_store);
+			$this->assertEquals($test_store->getStoreName(), $new_store);
 		}
 
 		function test_deleteStore()
 		{
 			//Arrange
-			$name = "Foot Traffic";
+			$store_name = "Foot Traffic";
 			$id = null;
-			$test_store = new Store($name, $id);
+			$test_store = new Store($store_name, $id);
 			$test_store->save();
 
-			$name2 = "Fit Right";
+			$store_name2 = "Fit Right";
 			$id2 = null;
-			$test_store2 = new Store($name2, $id2);
+			$test_store2 = new Store($store_name2, $id2);
 			$test_store2->save();
 
 			//Act
@@ -135,14 +136,14 @@
 		function test_find()
 		{
 			//Assert
-			$name = "Foot Traffic";
+			$store_name = "Foot Traffic";
 			$id = null;
-			$test_store = new Store($name, $id);
+			$test_store = new Store($store_name, $id);
 			$test_store->save();
 
-			$name2 = "Fit Right";
+			$store_name2 = "Fit Right";
 			$id2 = null;
-			$test_store2 = new Store($name2, $id2);
+			$test_store2 = new Store($store_name2, $id2);
 			$test_store2->save();
 
 			//Act
@@ -155,9 +156,9 @@
 		function test_getBrands()
 		{
 			//Assert
-			$name = "Foot Traffic";
+			$store_name = "Foot Traffic";
 			$id = null;
-			$test_store = new Store($name, $id);
+			$test_store = new Store($store_name, $id);
 			$test_store->save();
 
 			$brand_name = "Nike";

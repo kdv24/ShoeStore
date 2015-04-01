@@ -1,19 +1,19 @@
 <?php
 
 	class Store {
-		private $name;
+		private $store_name;
 		private $id;
 
-		function __construct($name, $id = null)
+		function __construct($store_name, $id = null)
 		{
-			$this->name = $name;
+			$this->store_name = $store_name;
 			$this->id = $id;
 		}
 
 	//GETTERS
-		function getName()
+		function getStoreName()
 		{
-			return $this->name;
+			return $this->store_name;
 		}	
 
 		function getId()
@@ -22,9 +22,9 @@
 		}
 
 	//SETTERS
-		function setName($new_name)
+		function setStoreName($new_store_name)
 		{
-			$this->name = (string) $new_name;
+			$this->store_name = (string) $new_store_name;
 		}	
 
 		function setId($new_id)
@@ -35,7 +35,7 @@
 	//DB FUNCTIONS
 		function save()
 		{
-			$statement = $GLOBALS['DB']->query("INSERT INTO stores (store_name) VALUES ('{$this->getName()}') RETURNING id;");
+			$statement = $GLOBALS['DB']->query("INSERT INTO stores (store_name) VALUES ('{$this->getStoreName()}') RETURNING id;");
 			$result = $statement->fetch(PDO::FETCH_ASSOC);
 			$this->setId($result['id']);
 		}	
@@ -59,9 +59,9 @@
 			$stores = array();
 
 			foreach ($returned_stores as $store) {
-				$name = $store['store_name'];
+				$store_name = $store['store_name'];
 				$id = $store['id'];
-				$new_store = new Store($name, $id);
+				$new_store = new Store($store_name, $id);
 				array_push($stores, $new_store);
 			}
 			return $stores;
@@ -71,7 +71,7 @@
 		function updateStore($new_store)
 		{
 			$GLOBALS['DB']->exec("UPDATE stores SET store_name = '{$new_store} WHERE id = {$this->getId()};");
-			$this->setName($new_store);
+			$this->setStoreName($new_store);
 		}
 
 	//DELETE

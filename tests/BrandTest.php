@@ -6,6 +6,7 @@
     */
 
     require_once "src/Brand.php";
+    require_once "src/Store.php";
 
     $DB = new PDO('pgsql:host=localhost;dbname=shoes_test');
 
