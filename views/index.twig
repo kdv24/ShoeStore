@@ -9,12 +9,10 @@
 <h1>Shoe Store</h1>
 
 <h3>Store List:</h3>
-
-
-
-
+   <button><a href="/add_store">Add store</a></button>
+ <br>
 	{% if stores is not empty %}
-	<h4>Please click on any store to see a list of brands carried, to add a brand, or to delete a given store.</h4>
+	<h5>Click on any store to see a list of brands carried, to add a brand, or to delete a given store.</h5>
 	<ul>
 		{% for store in stores %}
 		<li><a href="/stores/ {{ store.getId }}">{{ store.getStoreName }}</a></li>
@@ -24,20 +22,17 @@
 		<button type='submit'>Delete All</button>
 	</form>	
 	{% endif %}	
-
-    <button><a href="/add_store">Add store</a></button>
- <br>
+<br>
 
 
 	<strong>To do:</strong>
-
-	<p> need form to add a new store which will need a post route that will render back to index.html and still use Store::getAll()</p>
 
 
 	<strong>Done:</strong>
 	<p> need list of all stores with links that render stores/{id} pages, using Store::getAll() method </p>
 	<p> need to add note to click on a store to see all brands carried at that store, add a brand to a store, or to delete a given store</p>
 	<p> need a button to delete all stores which will need a delete route that will render back to index.html Store::deleteAll() </p>	
+	<p> need form to add a new store which will need a post route that will render back to index.html and still use Store::getAll()</p>	
 
 <h3>Brand List:</h3>	
 	<p> need list of all brands with links that render brands/{id} pages, using Brand::getAll() method</p>

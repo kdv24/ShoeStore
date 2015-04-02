@@ -40,5 +40,11 @@
     	return $app['twig']->render('index.twig', array('store' => $new_store, 'stores'=>Store::getAll()));
     });
 
+    $app->post('/delete_stores', function () use($app)
+    {
+    	Store::deleteAll();
+    	return $app['twig']->render('index.twig', array('stores' => Store::getAll()));
+    });
+
     return $app;
 ?>
