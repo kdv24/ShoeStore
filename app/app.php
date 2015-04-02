@@ -45,12 +45,13 @@
 //finds brands associated with a given store and renders the stores.twig file specific to that store, along with the brands it carries.
     $app->get("/stores/{id}", function ($id) use ($app)
     {
+    	//shows selected store
     	$selected_store = Store::find($id);
-    	$store = $selected_store->getBrands();
-   // 	$selected_store = Store::find($store[0]->getId());
+    	$matching_brands = $selected_store->getBrands();
+   		//$selected_store = Store::find($store[0]->getId());
    //	$query = $GLOBALS['DB']->query("SELECT * FROM brands WHERE store_id = {$id};");
    // 	$result = $query->fetchAll(PDO::FETCH_ASSOC);
-    	return $app['twig']->render('stores.twig', array('store' => $selected_store));
+    	return $app['twig']->render('stores.twig', array('store' => $selected_store, 'brand' => $matching_brands));
     });
 
 //DELETES STORES and renders index.twig
@@ -84,10 +85,11 @@
 
     $app->get("/brands/{id}", function ($id) use ($app)
     {
+    	//shows selected brand
     	$selected_brand = Brand::find($id);
-    	$brand = $selected_brand->getStores();
+    	// $brand = $selected_brand->getStores();
 
-    	return $app['twig']->render('brands.twig', array('brand' => $selected_brand));
+    	return $app['twig']->render('brands.twig', array('brand' => $selected_brand, 'brands' => Brand::getAll()));
     });
 
 

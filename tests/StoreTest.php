@@ -116,13 +116,11 @@
 		{
 			//Arrange
 			$store_name = "Foot Traffic";
-			$id = null;
-			$test_store = new Store($store_name, $id);
+			$test_store = new Store($store_name);
 			$test_store->save();
 
 			$store_name2 = "Fit Right";
-			$id2 = null;
-			$test_store2 = new Store($store_name2, $id2);
+			$test_store2 = new Store($store_name2);
 			$test_store2->save();
 
 			//Act
@@ -130,12 +128,12 @@
 			$result = Store::getAll();
 
 			//Assert
-			$this->assertEquals($test_store2, $result);
+			$this->assertEquals([$test_store2], $result);
 		}
 
 		function test_find()
 		{
-			//Assert
+			//Arrange
 			$store_name = "Foot Traffic";
 			$id = null;
 			$test_store = new Store($store_name, $id);
@@ -153,22 +151,41 @@
 			$this->assertEquals($test_store, $result);
 		}
 
+		function test_addBrand()
+		{
+			//Arrange
+			$test_store = new Store("Foot Traffic");
+			$test_store->save();
+
+			$brand_name = "saucony";
+
+			$test_brand = new Brand($brand_name);
+			$test_brand->save();
+
+			//Act
+			$test_store->addBrand($test_brand);
+
+			//Assert
+			$result = $test_store->getBrands();
+			$this->assertEquals([$test_brand], $result);
+		}
+
 		function test_getBrands()
 		{
-			//Assert
+			//Arrange
 			$store_name = "Foot Traffic";
-			$id = null;
-			$test_store = new Store($store_name, $id);
+
+			$test_store = new Store($store_name);
 			$test_store->save();
 
 			$brand_name = "Nike";
-			$id2 = null;
-			$test_brand_name = new Brand($brand_name, $id2);
+
+			$test_brand_name = new Brand($brand_name);
 			$test_brand_name->save();
 
 			$brand_name2 = "Adidas";
-			$id3 = null;
-			$test_brand_name2 = new Brand($brand_name2, $id3);
+
+			$test_brand_name2 = new Brand($brand_name2);
 			$test_brand_name2->save();			
 
 			//Act
