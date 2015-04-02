@@ -26,7 +26,7 @@ This app holds a dynamic list of local shoe stores and lists the brands of shoes
 4.  Now you should be able to see the Shoe Store.	
 
 
-#If the import doesn't work or you want to also view the test database and you need to recreate the database in psql, you can also type in the following commands:#
+If the import doesn't work or you want to also view the test database and you need to recreate the database in psql, you can also type in the following commands:
 
 CREATE DATABASE shoes;
 \c SHOES;
