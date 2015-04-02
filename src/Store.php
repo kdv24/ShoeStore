@@ -85,7 +85,7 @@
 			$GLOBALS['DB']->exec('DELETE FROM stores *;');
 		}
 
-	//JOIN EVENTS TO STORES
+	//JOIN BRANDS TO STORES
 		function addBrand($brand)
 		{
 			$GLOBALS['DB']->exec("INSERT INTO brands_stores (brand_id, store_id) VALUES ({$brand->getId()}, {$this->getId()});");
@@ -94,10 +94,10 @@
 		function getBrands()
 		{
 			$query = $GLOBALS['DB']->query("SELECT brands.* FROM 
-				stores 	JOIN brands_stores ON (stores.id = brands_stores.store_id)
+				stores 	JOIN brands_stores ON (brands_stores.store_id = store.id)
 						JOIN brands ON (brands_stores.brand_id = brand.id)
-						WHERE stores.id = {$this->getId()};");
-			var_dump($query);
+						WHERE store.id = {$this->getId()};");
+
 			$brand_ids = $query->fetchAll(PDO::FETCH_ASSOC);
 
 			$brands = array();
