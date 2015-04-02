@@ -85,6 +85,26 @@
 			$GLOBALS['DB']->exec('DELETE FROM stores *;');
 		}
 
+		function test_find()
+		{
+			//Assert
+			$brand_name = "nike";
+			$id = null;
+			$test_brand_name = new Brand($brand_name, $id);
+			$test_brand_name->save();
+
+			$brand_name2 = "adidas";
+			$id2= null;
+			$test_brand_name2 = new Brand($brand_name2, $id2);
+			$test_brand_name2->save();
+
+			//Act
+			$result = Brand::find($test_brand_name->getId());
+
+			//Assert
+			$this->assertEquals($test_brand_name, $result);
+		}
+
 	//JOIN BRANDS TO STORES
 		function addBrand($brand)
 		{

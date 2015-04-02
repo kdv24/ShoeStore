@@ -32,7 +32,7 @@
     	return $app['twig']->render('add_store.twig');
     });
 
-//grabs info from form and renders result as index.twig
+//uses info from form and renders result as index.twig
     $app->post("/add_store", function () use ($app)
     {
     	$store_name = $_POST['store_name'];
@@ -42,11 +42,14 @@
     	return $app['twig']->render('index.twig', array('store' => $new_store, 'stores'=>Store::getAll(), 'brands' => Brand::getAll()));
     });
 
+//finds brands associated with a given store and renders the stores.twig file specific to that store, along with the brands it carries.
     $app->get("/stores/{id}", function ($id) use ($app)
     {
     	$selected_store = Store::find($id);
     	$store = $selected_store->getBrands();
-    	$selected_store = Store::find($store[0]->getId());
+   // 	$selected_store = Store::find($store[0]->getId());
+   //	$query = $GLOBALS['DB']->query("SELECT * FROM brands WHERE store_id = {$id};");
+   // 	$result = $query->fetchAll(PDO::FETCH_ASSOC);
     	return $app['twig']->render('stores.twig', array('store' => $selected_store));
     });
 
@@ -79,6 +82,13 @@
     	return $app['twig']->render('index.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
     });
 
+    $app->get("/brands/{id}", function ($id) use ($app)
+    {
+    	$selected_brand = Brand::find($id);
+    	$brand = $selected_brand->getStores();
+
+    	return $app['twig']->render('brands.twig', array('brand' => $selected_brand));
+    });
 
 
     return $app;
