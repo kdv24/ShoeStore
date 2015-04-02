@@ -7,7 +7,11 @@
 <body>
 <div class="container">
 <h1>Shoe Store</h1>
-<h3>Store and brands carried:</h3>
+<h3>{{ store.getStoreName }} carries the following shoes:</h3>
+	<ul>
+		<li> {{ brand.getBrandName }}</li>
+	</ul>
+
 	<p> need list of all brands associated with a given store, which will need getBrands()</p>
 	<p> need form to add a new brand which will need a post route that will render back to stores/{id}.html and still use addBrand($brand) & getBrands() if matching Store id</p>
 	<p> need a button to delete the specific store deleteStore() (and all brands associated with it or only show if Store id is not empty?) - will need a delete route that will render back to index.html </p>
