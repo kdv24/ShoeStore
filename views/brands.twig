@@ -9,10 +9,8 @@
     <h1><a href="/">Shoe Store</a></h1>
 
     <h3>Brand List:</h3>
-           <button><a href="/add_brand">Add brand</a></button>
-         <br>
             {% if brands is not empty %}
-            <h5>Click on any brand to see a list of brands carried.</h5>
+            <h5>Click on any brand to see a list of stores where it's carried.</h5>
             <ul>
                 {% for brand in brands %}
                 <li><a href="/brands/ {{ brand.getId }}">{{ brand.getBrandName }}</a></li>
@@ -28,6 +26,13 @@
         <p> There are no brands yet.  Add one now.</p>
         {% endif %}
 
+        <h3>Add a new brand:</h3>
+            <form action="/add_brand" method= "post">
+                <label for 'brand_id'>Store Name</label>
+                <input id="brand_id" name="brand_id" type="text" autofocus="autofocus">
+
+                <button type="submit">Submit</button>
+            </form>
 
 	<button><a href="/">Home</a></button>
 </div>

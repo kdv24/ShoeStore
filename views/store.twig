@@ -2,19 +2,19 @@
 <html>
 <head>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<title>Shoe Store</title>
+    <title>Shoe Store</title>
 </head>
 <body>
 
 <div class="container">
     <h1><a href="/">Shoe Store</a></h1>
 
-    <h3>Store List:</h3>
-        {% if stores is not empty %}
-        <h5>Click on any store to see a list of brands carried.</h5>
+    <h3>{{ store.getName }}:</h3>
+        {% if brands is not empty %}
+        <h5>The following brands are available:</h5>
         <ul>
-            {% for store in stores %}
-            <li><a href="/stores/ {{ store.getId }}">{{ store.getStoreName }}</a></li>
+            {% for brand in brands %}
+            <li><a href="/brand/ {{ brand.getId }}">{{ brand.getBrandName }}</a></li>
             {% endfor %}
         </ul>
         <form action="/delete_stores" method="post">
@@ -23,19 +23,15 @@
 
     <br>
 
-	{% else %}
-	<p> There are no stores yet.  Add one now.</p>
-	{% endif %}
+    {% else %}
+    <p> There are no brands to display yet.  Add one now.</p>
+    {% endif %}
 
-    <h3>Add a new store:</h3>
+    <h3>Add a new brand:</h3>
     <form action="/add_brand" method= "post">
         <input id='store_id' name='store_id' type= "hidden" value= "{{ store.getId }}">
-        <label for 'brand_id'>Brand Name</label>
-        <select id="brand_id" name="brand_id" type="text">
-            {% for brand in brands %}
-                <option value="{{ brand.getId }}"> {{ brand.getBrandName }} </option>
-            {% endfor %}
-        </select>
+        <label for 'brand_name'>Brand Name</label>
+        <input id = 'brand_id' name = 'brand_id' type='text'>
         <button type="submit">Submit</button>
 </form>
     <button><a href="/">Home</a></button>

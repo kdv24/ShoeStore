@@ -186,12 +186,12 @@
 			$brand_name2 = "Adidas";
 
 			$test_brand_name2 = new Brand($brand_name2);
-			$test_brand_name2->save();			
+			$test_brand_name2->save();
 
 			//Act
 			$test_store->addBrand($test_brand_name);
 			$test_store->addBrand($test_brand_name2);
-			
+
 
 			//Assert
 			$result = $test_store->getBrands();

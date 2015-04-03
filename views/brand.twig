@@ -7,11 +7,11 @@
 <body>
 <div class="container">
     <h1><a href="/">Shoe Store</a></h1>
-<h3>Add a new brand:</h3>
-	<form action="/add_brand" method= "post">
-		<label for 'brand_name'>Brand Name</label>
-		<input id="brand_name" name="brand_name" type="text" autofocus="autofocus">
-
+<h3>Add a new store:</h3>
+	<form action="/add_store" method= "post">
+		<input id="brand_id" name="store_id" type="hidden" value = "{{ brand.getId }}">
+        <label for 'store_name'>Store Name</label>
+        <input id = "store_id" name ='store_id' type = 'text'>
 		<button type="submit">Submit</button>
 	</form>
 	{% for brand in brands %}
