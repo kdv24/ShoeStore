@@ -14,6 +14,10 @@
 
 		<button type="submit">Submit</button>
 	</form>
+
+	{% for store in stores %}
+		<li><a href="/stores/ {{ store.getId }}">{{ store.getStoreName }}</a></li>
+		{% endfor %}
 	<br>
 	<button><a href="/">Home</a></button>
 </div>	

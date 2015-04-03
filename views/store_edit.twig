@@ -21,7 +21,7 @@
 
 		
 			<form action="/stores/{id}" method= "post">
-				<input id='store_id' name='store_id' type= "hidden" value= "{{ store.getId }}">
+				<input id='store_id' name='store_id' type= "patch" value= "{{ store.getId }}">
 				<label for 'brand_id'>Brand Name</label>
 				<input id="brand_id" name="brand_id" type="text" autofocus="autofocus">
 				
@@ -37,3 +37,5 @@
 </div>	
 </body>
 </html>
+
+FIX ME! I'm the edit a store page
