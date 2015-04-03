@@ -48,10 +48,17 @@
     	//shows selected store
     	$selected_store = Store::find($id);
     	$matching_brands = $selected_store->getBrands();
-   		//$selected_store = Store::find($store[0]->getId());
-   //	$query = $GLOBALS['DB']->query("SELECT * FROM brands WHERE store_id = {$id};");
-   // 	$result = $query->fetchAll(PDO::FETCH_ASSOC);
-    	return $app['twig']->render('stores.twig', array('store' => $selected_store, 'brand' => $matching_brands));
+  
+    	return $app['twig']->render('stores.twig', array('stores'=> Store::getAll(), 'store' => $selected_store, 'matching_brands' => $matching_brands, 'all_brands'=>Brand::getAll()));
+    });
+
+    //working on this one now
+    $app->post("/stores/{id}", function ($id) use ($app)
+    {
+        $store = Store::find($_POST['store_id']);
+        $matching_brands = Brand::find($_POST['brand_name']);
+        $store->addBrand($matching_brands);
+        return $app['twig']->render('stores.twig', array('store' => $store, 'brands' =>$store->getBrands(), 'stores'=>Store::getAll(), 'all_brands'=>Brand::getAll()));
     });
 
 //DELETES STORES and renders index.twig
@@ -67,6 +74,9 @@
     {
     	return $app['twig']->render('add_brand.twig');
     });
+
+
+
 
     $app->post("/add_brand", function () use ($app)
     {
@@ -87,11 +97,23 @@
     {
     	//shows selected brand
     	$selected_brand = Brand::find($id);
-    	// $brand = $selected_brand->getStores();
+    	$matching_stores = $selected_brand->getStores();
 
-    	return $app['twig']->render('brands.twig', array('brand' => $selected_brand, 'brands' => Brand::getAll()));
+    	return $app['twig']->render('brands.twig', array('matching_stores'=> $matching_stores, 'brand' => $selected_brand, 'brands' => Brand::getAll()));
     });
 
+//need to finish individual delete routes on twig pages
+    $app->delete("/brands/{id}", function($id) use ($app) {
+    $brand = Brand::find($id);
+    $brand->deleteBrand();
+    return $app['twig']->render('index.html.twig', array('brands'=>Brand::getAll()));
+  });
+
+    $app->delete("/stores/{id}", function($id) use ($app) {
+    $stores = Store::find($id);
+    $stores->deleteStore();
+    return $app['twig']->render('index.html.twig', array('stores'=>Store::getAll()));
+  });
 
     return $app;
 ?>

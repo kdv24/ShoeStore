@@ -8,12 +8,30 @@
 <div class="container">
 <h1>Shoe Store</h1>
 <h3>{{ store.getStoreName }} carries the following shoes:</h3>
+	{% if matching_brands is not empty %}
 	<ul>
-		<li> {{ brand.getBrandName }}</li>
+			{% for matching_brand in matching_brands %}
+			<li> {{ matching_brand.getBrandName }}</li>
+			{% endfor %}
 	</ul>
+	{% else %}
+	<p> There are no shoe brands associated with this store.</p>
+	{% endif %}
+	
+	{% if stores is not empty %}
+		{% for store in stores %}
+			<form action="/stores/{id}" method= "post">
+				<input id='store_id' name='store_id' type= "hidden" value= "{{ store.getId }}">
+				<label for 'brand_name'>Brand Name</label>
+				<input id="brand_name" name="brand_name" type="text" autofocus="autofocus">
+				
 
-	<p> need list of all brands associated with a given store, which will need getBrands()</p>
-	<p> need form to add a new brand which will need a post route that will render back to stores/{id}.html and still use addBrand($brand) & getBrands() if matching Store id</p>
+				<button type="submit">Submit</button>
+			</form>
+		{% endfor %}	
+	{% endif %}	
+	
+	<p> need form to add a new brand which will need a post route that will render back to stores/{id}.html and still use  add Brand and get Brand if matching Store id</p>
 	<p> need a button to delete the specific store deleteStore() (and all brands associated with it or only show if Store id is not empty?) - will need a delete route that will render back to index.html </p>
 	<button><a href="/">Home</a></button>
 </div>	
