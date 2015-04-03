@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container">
-<h1>Shoe Store</h1>
+    <h1><a href="/">Shoe Store</a></h1>
 <h3>{{ store.getStoreName }} carries the following shoes:</h3>
 	{% if matching_brands is not empty %}
 	<ul>
@@ -17,24 +17,24 @@
 	{% else %}
 	<p> There are no shoe brands associated with this store.</p>
 	{% endif %}
-	
 
-		
+
+
 			<form action="/stores/{id}" method= "post">
 				<input id='store_id' name='store_id' type= "patch" value= "{{ store.getId }}">
 				<label for 'brand_id'>Brand Name</label>
 				<input id="brand_id" name="brand_id" type="text" autofocus="autofocus">
-				
+
 
 				<button type="submit">Submit</button>
 			</form>
-			
 
-	
+
+
 	<p> need form to add a new brand which will need a post route that will render back to stores/{id}.html and still use  add Brand and get Brand if matching Store id</p>
 	<p> need a button to delete the specific store deleteStore() (and all brands associated with it or only show if Store id is not empty?) - will need a delete route that will render back to index.html </p>
 	<button><a href="/">Home</a></button>
-</div>	
+</div>
 </body>
 </html>
 

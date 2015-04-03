@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container">
-<h1>Shoe Store</h1>
+    <h1><a href="/">Shoe Store</a></h1>
 <h3>{{ brand.getName}}</h3>
 	<form action="/brands/{id}" method= "post">
 		<input name="_method" type="hidden" value="patch">
@@ -16,10 +16,10 @@
 		<button type="submit">Submit</button>
 	</form>
 	<form action="/delete_brands" method="post">
-		<button type= 'submit'>Delete All Brands</button>	
-	</form>	
+		<button type= 'submit'>Delete All Brands</button>
+	</form>
 	<br>
 	<button><a href="/">Home</a></button>
-</div>	
+</div>
 </body>
 </html>

@@ -26,21 +26,37 @@
     });
 
 //STORES
-//will display a new page with a form to add a new store
-    $app->get("/add_store", function () use ($app)
-    {
-    	return $app['twig']->render('add_store.twig', array('stores'=>Store::getAll()));
-    });
+//will display list of all stores WORKS
+	$app->get("/stores", function () use ($app)
+	{
+		return $app['twig']->render('stores.twig', array('stores'=>Store::getAll()));
+	});
 
-//uses info from form and renders result as index.twig
-    $app->post("/add_store", function () use ($app)
-    {
-    	$store_name = $_POST['store_id'];
-    	$new_store = new Store($store_name);
-    	$new_store->save();
+//will display a new page with a form to add a new store WORKS
+	$app->get("/add_store", function () use ($app)
+	{
+		return $app['twig']->render('add_store.twig', array('stores'=>Store::getAll()));
+	});
 
-    	return $app['twig']->render('add_store.twig', array('store' => $new_store, 'stores'=>Store::getAll(), 'brands' => Brand::getAll()));
-    });
+//uses info from form and renders result as index.twig WORKS
+	$app->post("/add_store", function () use ($app)
+	{
+		$store_name = $_POST['store_id'];
+		$new_store = new Store($store_name);
+		$new_store->save();
+
+		return $app['twig']->render('add_store.twig', array('store' => $new_store, 'stores'=>Store::getAll(), 'brands' => Brand::getAll()));
+	});
+
+//BRANDS
+//will display list of all brands
+	$app->get("/brands", function () use($app)
+	{
+		return $app['twig']->render('brands.twig', array('brands'=>Brand::getAll()));
+	});
+
+
+
 
 //finds brands associated with a given store and renders the stores.twig file specific to that store, along with the brands it carries.
     $app->get("/stores/{id}", function ($id) use ($app)
@@ -48,7 +64,7 @@
     	//shows selected store
     	$selected_store = Store::find($id);
     	$matching_brands = $selected_store->getBrands();
-  
+
     	return $app['twig']->render('stores.twig', array('stores'=> Store::getAll(), 'store' => $selected_store, 'matching_brands' => $matching_brands, 'all_brands'=>Brand::getAll()));
     });
 
