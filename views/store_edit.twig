@@ -5,29 +5,25 @@
 	<title>Shoe Store</title>
 </head>
 <body>
-<div class="container">
-    <h1><a href="/">Shoe Store</a></h1>
+    <div class="container">
+        <h1><a href="/">Shoe Store</a></h1>
+        <h2>{{ store.getName }}</h2>
+        <h3>Update your store</h3>
+    		<form action="/stores/{{ store.getId }}" method= "post">
+    			<input name= "_method" type="hidden" value= "patch">
+    			<label for 'store_name'>New store name:</label>
+    			<input id="store_name" name="store_name" type="text" autofocus="autofocus">
+    			<button type="submit">Submit</button>
+    		</form>
 
+            <form action="/stores/{{ store.getId }}" method="post">
+                    <input name="_method" type="hidden" value="delete">
+                    <button type="submit" class="btn">Delete this store</button>
+            </form>
 
+            <h6><a href = '/stores'>Store list</a></h6>
 
-
-
-			<form action="/stores/{id}" method= "post">
-				<input id='store_id' name='store_id' type= "patch" value= "{{ store.getId }}">
-				<label for 'brand_id'>Brand Name</label>
-				<input id="brand_id" name="brand_id" type="text" autofocus="autofocus">
-
-
-				<button type="submit">Submit</button>
-			</form>
-
-
-
-	<p> need form to add a new brand which will need a post route that will render back to stores/{id}.html and still use  add Brand and get Brand if matching Store id</p>
-	<p> need a button to delete the specific store deleteStore() (and all brands associated with it or only show if Store id is not empty?) - will need a delete route that will render back to index.html </p>
-	<button><a href="/">Home</a></button>
-</div>
+        	<button><a href="/">Home</a></button>
+    </div>
 </body>
 </html>
-
-FIX ME! I'm the edit a store page
