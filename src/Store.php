@@ -114,9 +114,9 @@
 		function getBrands()
 		{
 			$query = $GLOBALS['DB']->query("SELECT brands.* FROM 
-				stores 	JOIN brands_stores ON (brands_stores.store_id = store.id)
-						JOIN brands ON (brands_stores.brand_id = brand.id)
-						WHERE store.id = {$this->getId()};");
+				stores 	JOIN brands_stores ON (brands_stores.store_id = stores.id)
+						JOIN brands ON (brands_stores.brand_id = brands.id)
+						WHERE stores.id = {$this->getId()};");
 
 			$brand_ids = $query->fetchAll(PDO::FETCH_ASSOC);
 
