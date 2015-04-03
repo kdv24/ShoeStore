@@ -11,10 +11,10 @@
 	{% if matching_brands is not empty %}
 	<ul>
 			{% for matching_brand in matching_brands %}
-			<li><a href ="/brands/{{ brand.getId }}"> {{ matching_brand.getBrandName }}</a>
+			<li><a href ="/brands/{{ matching_brand.getId }}"> {{ matching_brand.getBrandName }}</a>
 				<form action ="/delete_brand" method="post">
 					<input name="_method" type="hidden" value="delete">
-					<input value="{{ brand.getId }}" id="brand_id" name="brand_id" type="hidden">
+					<input value="{{ matching_brand.getId }}" id="brand_id" name="brand_id" type="hidden">
 					<input value="{{ store.getId }}" id= "store_id" name="store_id" type="hidden">
 					<button type="submit" class="btn">Delete Brand</button>
 				</form>	
