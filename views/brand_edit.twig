@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<title>Shoe Store</title>
+</head>
+<body>
+<div class="container">
+<h1>Shoe Store</h1>
+<h3>{{ brand.getName}}</h3>
+	<form action="/brands/{id}" method= "post">
+		<input name="_method" type="hidden" value="patch">
+		<label for 'new_name'>New brand name</label>
+		<input id="new_name" name="new_name" type="text" autofocus="autofocus">
+
+		<button type="submit">Submit</button>
+	</form>
+
+	<br>
+	<button><a href="/">Home</a></button>
+</div>	
+</body>
+</html>

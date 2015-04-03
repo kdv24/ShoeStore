@@ -35,7 +35,7 @@
 //uses info from form and renders result as index.twig
     $app->post("/add_store", function () use ($app)
     {
-    	$store_name = $_POST['store_name'];
+    	$store_name = $_POST['store_id'];
     	$new_store = new Store($store_name);
     	$new_store->save();
 
@@ -79,6 +79,14 @@
         $store = Store::find($id);
         $store->deleteStore();
         return $app['twig']->render('stores.twig', array('store'=> Store::getAll()));
+    });
+
+    $app->post("/store_carries", function() use($app)
+    {
+        $new_store = Store::find($_POST['store_id']);
+        $matching_brands = Brand::find($_POST['brand_id']);
+        $new_store->addBrand($matching_brands);
+        return $app['twig']->render('stores.twig', array('store'=> $new_store, 'brands'=> $new_store->getBrands(), 'matching_brands'=> $matching_brands, 'all_brands'=> Brand::getAll()));
     });
 
 //DELETES ALL STORES and renders index.twig

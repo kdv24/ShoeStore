@@ -11,7 +11,14 @@
 	{% if matching_stores is not empty %}
 	<ul>
 			{% for matching_store in matching_stores %}
-			<li> {{ matching_store.getStoreName }}</li>
+			<li><a href="/stores/ {{store.getId }}"> {{ matching_store.getStoreName }}</a>
+			<form action="/stores{id}/delete" method="post">
+				<input name="_method" type="hidden" value="delete">
+				<input value="{{ brand.getId }}" id="brand_id" name="brand_id">
+				<input value="{{ store.getId }}" id="store_id" name="store_id">
+				<button type="submit" class="btn">Delete this store</button>
+			</form>	
+			</li>
 			{% endfor %}
 	</ul>
 	{% else %}
