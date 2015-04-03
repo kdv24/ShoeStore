@@ -7,16 +7,8 @@
 <body>
 <div class="container">
     <h1><a href="/">Shoe Store</a></h1>
-<h3>{{ store.getStoreName }} carries the following shoes:</h3>
-	{% if matching_brands is not empty %}
-	<ul>
-			{% for matching_brand in matching_brands %}
-			<li> {{ matching_brand.getBrandName }}</li>
-			{% endfor %}
-	</ul>
-	{% else %}
-	<p> There are no shoe brands associated with this store.</p>
-	{% endif %}
+
+
 
 
 

@@ -59,9 +59,26 @@
 			</li>
 			{% endfor %}
 
-// 
+//
        <select id="brand_id" name="brand_id" type="text">
             {% for brand in all_brands %}
                 <option value="{{ brand.getId }}"> {{ brand.getBrandName }} </option>
             {% endfor %}
         </select>
+
+//	{% if brands is not empty %}
+	<h5>Click on any brand to see which stores carry it.</h5>
+	<ul>
+		{% for brand in brands %}
+		<li><a href="/brands/ {{ brand.getId }}">{{ brand.getBrandname}}</a></li>
+		{% endfor %}
+	</ul>
+	<form action="/delete_brands" method="post">
+		<button type= 'submit'>Delete All Brands</button>
+	</form>
+	{% endif %}
+
+// DELETE ALL BRANDS
+<form action="/delete_brands" method="post">
+    <button type='submit'>Delete All Brands</button>
+</form>

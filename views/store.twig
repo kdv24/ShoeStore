@@ -14,26 +14,26 @@
         <h5>The following brands are available:</h5>
         <ul>
             {% for brand in brands %}
-            <li><a href="/brand/ {{ brand.getId }}">{{ brand.getBrandName }}</a></li>
+                <li><a href="/brand/ {{ brand.getId }}">{{ brand.getBrandName }}</a></li>
             {% endfor %}
         </ul>
-        <form action="/delete_stores" method="post">
-            <button type='submit'>Delete All Stores</button>
-        </form>
-
     <br>
-
     {% else %}
     <p> There are no brands to display yet.  Add one now.</p>
     {% endif %}
 
-    <h3>Add a new brand:</h3>
+    <h3>Choose a new brand for this store:</h3>
     <form action="/add_brand" method= "post">
         <input id='store_id' name='store_id' type= "hidden" value= "{{ store.getId }}">
-        <label for 'brand_name'>Brand Name</label>
-        <input id = 'brand_id' name = 'brand_id' type='text'>
+        <label for 'brand_id'>Brand Name</label>
+        <select id="brand_id" name="brand_id" type="text">
         <button type="submit">Submit</button>
-</form>
+    </form>
+
+            <form action='/store/{{ store.getId }}/edit'> method='post'>
+                <button type ="submit">Update</button>
+            </form>
+    <h6><a href = '/brands'>Brand list</a></h6>
     <button><a href="/">Home</a></button>
 </div>
 </body>

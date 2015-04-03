@@ -17,17 +17,7 @@
 <h3><a href="/brands">Brand List:</a></h3>
 	<button><a href="/add_brand">Add brand</a></button>
 <br>
-	{% if brands is not empty %}
-	<h5>Click on any brand to see which stores carry it.</h5>
-	<ul>
-		{% for brand in brands %}
-		<li><a href="/brands/ {{ brand.getId }}">{{ brand.getBrandname}}</a></li>
-		{% endfor %}
-	</ul>
-	<form action="/delete_brands" method="post">
-		<button type= 'submit'>Delete All Brands</button>
-	</form>
-	{% endif %}
+
 </div>
 </body>
 </html>
