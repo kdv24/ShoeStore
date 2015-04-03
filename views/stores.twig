@@ -14,7 +14,7 @@
         <h5>Click on any store to see a list of brands carried.</h5>
         <ul>
             {% for store in stores %}
-            <li><a href="/stores/ {{ store.getId }}">{{ store.getStoreName }}</a></li>
+            <li><a href="/store/ {{ store.getId }}">{{ store.getStoreName }}</a></li>
             {% endfor %}
         </ul>
     <br>

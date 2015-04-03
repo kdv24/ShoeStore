@@ -37,7 +37,7 @@
 	$app->get('store/{id}', function ($id) use ($app)
 	{
 		$store = Store::find($id);
-		return $app['twig']->render('store.twig', array('store' => $store, 'stores'=>Store::getAll(), 'brands'=> $store->getBrands));
+		return $app['twig']->render('store.twig', array('store' => $store, 'stores'=>Store::getAll(), 'brands'=> $store->getBrands()));
 	});
 
 //  NOT NECESSARY? will display a new page with a form to add a new store WORKS
@@ -119,14 +119,15 @@ $app->post("/brand_locate", function () use ($app)
         return $app['twig']->render('stores.twig', array('store' => $store, 'brands' =>$store->getBrands(), 'stores'=>Store::getAll(), 'all_brands'=>Brand::getAll()));
     });
 
-    //also finish this one and matching twig
-    $app->get("stores/{id}/edit", function ($id) use($app)
+//edit just ONE store
+    $app->post("store/{id}/edit", function ($id) use($app)
     {
         $store = Store::find($id);
         return $app['twig']->render('store_edit.twig', array('store'=>$store, 'brands'=> $store->getBrands()));
     });
 
-    $app->patch("/stores/{id}", function ($id) use ($app) {
+//route to change name of store
+    $app->patch("/store/{id}", function ($id) use ($app) {
         $store = Store::find($id);
         $new_store = $_POST['new_store'];
         $store->update($new_store);

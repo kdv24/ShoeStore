@@ -8,25 +8,25 @@
 
 <div class="container">
     <h1><a href="/">Shoe Store</a></h1>
-
+    {{ for store in stores }}
     <h3>{{ store.getName }}:</h3>
         {% if brands is not empty %}
         <h5>The following brands are available:</h5>
         <ul>
             {% for brand in brands %}
-                <li><a href="/brand/ {{ brand.getId }}">{{ brand.getBrandName }}</a></li>
+                <li><a href="/brand/{{ brand.getId }}">{{ brand.getBrandName }}</a></li>
             {% endfor %}
         </ul>
     <br>
-    {% else %}
+        {% else %}
     <p> There are no brands to display yet.  Add one now.</p>
-    {% endif %}
-
+        {% endif %}
+    {{ endfor }}
     <h3>Choose a new brand for this store:</h3>
     <form action="/add_brand" method= "post">
         <input id='store_id' name='store_id' type= "hidden" value= "{{ store.getId }}">
         <label for 'brand_id'>Brand Name</label>
-        <select id="brand_id" name="brand_id" type="text">
+        <input id="brand_id" name="brand_id" type="text">
         <button type="submit">Submit</button>
     </form>
 

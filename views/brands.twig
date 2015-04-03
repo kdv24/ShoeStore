@@ -13,13 +13,9 @@
             <h5>Click on any brand to see a list of stores where it's carried.</h5>
             <ul>
                 {% for brand in brands %}
-                <li><a href="/brands/ {{ brand.getId }}">{{ brand.getBrandName }}</a></li>
+                <li><a href="/brand/ {{ brand.getId }}">{{ brand.getBrandName }}</a></li>
                 {% endfor %}
-                <form action="/add_brand" method= "post">
 
-                    <input id = "brand_id" name= "brand_id" type = "text" autofocus= "autofocus">
-                    <button type = "submit">Submit</button>
-                </form>
             </ul>
         <br>
 
