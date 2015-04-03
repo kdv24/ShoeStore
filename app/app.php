@@ -20,25 +20,33 @@
     	return $app['twig']->render('index.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
     });
 
-    $app->post("/", function () use ($app)
-    {
-    	return $app['twig']->render('index.twig', array ('stores'=> Store::getAll(), 'brands' => Brand::getAll()));
-    });
+//UNNECESSARY?
+    // $app->post("/", function () use ($app)
+    // {
+    // 	return $app['twig']->render('index.twig', array ('stores'=> Store::getAll(), 'brands' => Brand::getAll()));
+    // });
 
 //STORES
-//will display list of all stores WORKS
+//will display list of ALL stores WORKS
 	$app->get("/stores", function () use ($app)
 	{
 		return $app['twig']->render('stores.twig', array('stores'=>Store::getAll()));
 	});
 
-//will display a new page with a form to add a new store WORKS
-	$app->get("/add_store", function () use ($app)
+//will display ONE store and all brands associated with it
+	$app->get('store/{id}', function ($id) use ($app)
 	{
-		return $app['twig']->render('store.twig', array('stores'=>Store::getAll()));
+		$store = Store::find($id);
+		return $app['twig']->render('store.twig', array('store' => $store, 'stores'=>Store::getAll(), 'brands'=> $store->getBrands));
 	});
 
-//uses info from form and renders result on stores.twig WORKS
+//  NOT NECESSARY? will display a new page with a form to add a new store WORKS
+// 	$app->get("/add_store", function () use ($app)
+// 	{
+// 		return $app['twig']->render('store.twig', array('stores'=>Store::getAll()));
+// 	});
+
+//Adds ONE store -uses info from form and renders result on stores.twig WORKS
 	$app->post("/add_store", function () use ($app)
 	{
 		$store_name = $_POST['store_id'];
@@ -47,6 +55,24 @@
 
 		return $app['twig']->render('stores.twig', array('store' => $new_store, 'stores'=>Store::getAll(), 'brands' => Brand::getAll()));
 	});
+
+
+//NEED STILL-  add brand to store
+// $app->post("/store_carries", function() use($app)
+// {
+//     $new_store = Store::find($_POST['store_id']);
+//     $matching_brands = Brand::find($_POST['brand_id']);
+//     $new_store->addBrand($matching_brands);
+//     return $app['twig']->render('stores.twig', array('store'=> $new_store, 'brands'=> $new_store->getBrands(), 'matching_brands'=> $matching_brands, 'all_brands'=> Brand::getAll()));
+// });
+
+$app->post("/brand_locate", function () use ($app)
+{
+	$store = Store::find($_POST['store_id']);
+	$brand = Brand::find($_POST['brand_id']);
+	$brand->addStore($store);
+	return $app['twig']->render('brand.twig', array('brand'=>$brand, 'matching_stores'=>$brand->getStores()));
+});
 
 //DELETES ALL STORES and renders index.twig WORKS
 	$app->post('/delete_stores', function () use($app)
@@ -58,7 +84,7 @@
 
 
 //BRANDS
-//will display list of all brands WORKS
+//will display list of ALL brands WORKS
 	$app->get("/brands", function () use($app)
 	{
 		return $app['twig']->render('brands.twig', array('brands'=>Brand::getAll()));
@@ -113,13 +139,7 @@
         return $app['twig']->render('stores.twig', array('store'=> Store::getAll()));
     });
 
-    $app->post("/store_carries", function() use($app)
-    {
-        $new_store = Store::find($_POST['store_id']);
-        $matching_brands = Brand::find($_POST['brand_id']);
-        $new_store->addBrand($matching_brands);
-        return $app['twig']->render('stores.twig', array('store'=> $new_store, 'brands'=> $new_store->getBrands(), 'matching_brands'=> $matching_brands, 'all_brands'=> Brand::getAll()));
-    });
+
 
 
 
