@@ -7,7 +7,10 @@
 <body>
 <div class="container">
 <h3>GET: displays ALL brands<br>
-	POST: has form to add a new brand to DB</h3>
+	POST: has form to add a new brand to DB<br>
+	DELETE: has delete button
+</h3>
+
 
 <h1><a href='/'>Shoes shoes shoes!</a></h1>
 
@@ -15,20 +18,22 @@
 	{% if brands is not empty %}
 		<ul>
 		{% for brand in brands %}
-			<li>{{ brand.getName }}</li>
-		}
+			<li>{{ brand.getBrandName }}</li>
 		{% endfor %}
 		</ul>
 	{% else %}
 		<h4>There are no brands entered yet.</h4>
 	{% endif %}
 
-	<form action="/add_brand">
+	<form action="/brands" method="post">
 		<label for="brand_name">Add a brand</label>
-		<input id="brand_name" name="brand_name" class="form-class" type="text">
+		<input id="brand_name" name="brand_name" class="form-class" type="text" autofocus="autofocus">
 		<button type="submit">Submit</button>
 	</form>
-
+<br>
+	<form action="/delete_brands" method="post">
+		<button type="submit">Delete All Brands</button>
+	</form>	
 <br>
 	<button><a href="/">Home</a></button>
 </div>	
