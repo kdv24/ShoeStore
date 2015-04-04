@@ -25,37 +25,39 @@
 
 //*************BRAND**************
 
-//READ- displays ALL brands
+//READ- displays ALL brands in DB
     $app->get("/brands", function () use ($app)
     {
         return $app['twig']->render('brands.twig');
     });
 
-//CREATE a new brand- receives ALL info from the form (add a brand) on the brands page
-    $app->post("/brands", function () use ($app)
+//CREATE a new brand- receives ALL info from the form (add a brand) on the brands page - adds to DB
+    $app->post("/add_brand", function () use ($app)
     {
         return $app['twig']->render('brands.twig');
     });
 
-//DELETE- deletes ALL brands
-    $app->post("/brands", function ($id) use ($app)
+//DELETE- deletes ALL brands in DB
+    $app->post("/delete_brands", function ($id) use ($app)
     {
         return $app['twig']->render('brands.twig');
     });
 
-//READ- displays ONE brand and any stores associated with that brand($id)
+//READ- displays ONE brand and any stores associated with that brand($id) - also displays option to add store 
     $app->get("/brand/{id}", function ($id) use ($app)
     {
         return $app['twig']->render('brand.twig');
     });
 
-//CREATE- receives info from the form (add a store to the brand) on the ONE brand page
+//CREATE- receives info from the form in GET route (add a store to the brand) on the ONE brand page  
+    //? post(/add_store)
     $app->post("/brand/{id}", function ($id) use ($app)
     {
         return $app['twig']->render('brand.twig');
     });
 
-//DELETE- delete ONE brand by {id}
+//DELETE- delete ONE brand by {id} in DB 
+    //? post(/delete_brand)
     $app->delete("/brand/{id}/delete", function ($id) use ($app)
     {
         return $app['twig']->render('brands.twig');
@@ -77,37 +79,45 @@
 
 //*************STORES**************
 
-//READ- displays ALL stores
+//READ- displays ALL stores in DB
     $app->get("/stores", function () use ($app)
     {
         return $app['twig']->render('stores.twig');
     });
 
-//CREATE a new STORE- receives ALL info from the form (add a store) on the stores page
-    $app->post("/stores", function () use ($app)
+//CREATE a new STORE- receives ALL info from the form (add a store) on the stores page - adds to DB
+    $app->post("/add_store", function () use ($app)
     {
         return $app['twig']->render('stores.twig');
     });
 
-//DELETE- deletes ALL stores
-    $app->delete("/stores", function ($id) use ($app)
+//DELETE- deletes ALL stores from DB
+    $app->delete("/delete_stores", function ($id) use ($app)
     {
         return $app['twig']->render('stores.twig');
     });
 
-//READ- displays ONE store and any brands associated with that store
+//READ- displays ONE store and any brands associated with that store - also displays option to add a brand
     $app->get("/store/{id}", function ($id) use ($app)
     {
         return $app['twig']->render('store.twig');
     });
 
-//CREATE- receives info from the form (add a brand to the store) on the ONE store page- CAREFUL ON THIS ONE: store to brand or brand to store
+//CREATE- receives info from the form (add brand selected on GET route to the store) on the ONE store page- CAREFUL ON THIS ONE: store to brand or brand to store   
+    //? post("/add_brand")?
     $app->post("/store/{id}", function ($id) use ($app)
     {
         return $app['twig']->render('store.twig');
     });
 
-//DELETE- deletes ONE store by {id}
+//DELETE- deletes a specific brand from ONE store's list
+    $app->delete("/delete_brand_from_store", function () use ($app)
+    {
+        return $app['twig']->render('store.twig');
+    });
+
+//DELETE- deletes ONE store by {id} - removes from DB 
+    //? post(/delete_store)
     $app->delete("/store/{id}/delete", function ($id) use ($app)
     {
         return $app['twig']->render('stores.twig');
@@ -119,7 +129,7 @@
         return $app['twig']->render('store_edit.twig');
     });
 
-//UPDATE- updates the ONE specific store name using id from store{id}
+//UPDATE- updates the ONE specific store name using id from store{id} - changes name in DB
     $app->patch("/store/{id}/edit", function ($id) use ($app)
     {
         return $app['twig']->render('store.twig');;
