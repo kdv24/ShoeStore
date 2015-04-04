@@ -18,7 +18,7 @@
 	{% if brands is not empty %}
 		<ul>
 		{% for brand in brands %}
-			<li>{{ brand.getBrandName }}</li>
+			<li><a href='/brand/{{ brand.getId }}'>{{ brand.getBrandName }}</a></li>
 		{% endfor %}
 		</ul>
 	{% else %}

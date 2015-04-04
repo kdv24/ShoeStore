@@ -18,7 +18,7 @@
 	{% if stores is not empty %}
 		<ul>
 		{% for store in stores %}
-			<li>{{ store.getstoreName }}</li>
+			<li><a href='/store/{{ store.getId }}'>{{ store.getStoreName }}</a></li>
 		{% endfor %}
 		</ul>
 	{% else %}
