@@ -14,7 +14,7 @@
 
 		{% if brands is not empty %}
 			{% for brand in brands %}
-				{{ brand.getBrandName }}
+				<ul>{{ brand.getBrandName }}</ul>
 			{% endfor %}
 		{% endif%}
 
@@ -28,7 +28,7 @@
 				{% endfor %}
 			</select>
 			<br>
-			<button type="submit">Add a brand</button>	
+			<button type="submit">Submit</button>	
 		</form>
 <br>
 	<button><a href="/stores">List of all stores</a></button>
