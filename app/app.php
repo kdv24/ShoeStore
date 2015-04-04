@@ -59,11 +59,24 @@
         return $app['twig']->render('/stores.twig');
     });
 
+    //receives all info from the form (add a store) on the stores page
+    $app->post("/stores", function () use ($app)
+    {
+        return $app['twig']->render('/stores.twig');
+    });
+
     //displays one store and all brands associated with that store
     $app->get("/store", function () use ($app)
     {
         return $app['twig']->render('/store.twig');
     });
+
+    //receives all info from the form (add a brand to the store) on the store page
+    $app->post("/store", function () use ($app)
+    {
+        return $app['twig']->render('/store.twig');
+    });
+
 
     //displays store to be updated or deleted
     $app->get("/store_edit", function () use ($app)
