@@ -6,38 +6,7 @@
 </head>
 <body>
 <div class="container">
-<h1>Shoe Store</h1>
-<h3>{{ store.getStoreName }} carries the following shoes:</h3>
-	{% if matching_brands is not empty %}
-	<ul>
-			{% for matching_brand in matching_brands %}
-			<li><a href ="/brands/{{ matching_brand.getId }}"> {{ matching_brand.getBrandName }}</a>
-				<form action ="/delete_brand" method="post">
-					<input name="_method" type="hidden" value="delete">
-					<input value="{{ matching_brand.getId }}" id="brand_id" name="brand_id" type="hidden">
-					<input value="{{ store.getId }}" id= "store_id" name="store_id" type="hidden">
-					<button type="submit" class="btn">Delete Brand</button>
-				</form>	
-			</li>
-			{% endfor %}
-	</ul>
-	{% else %}
-	<p> There are no shoe brands associated with this store.</p>
-	{% endif %}
-	
-
-		
-			<form action="/store_carries" method= "post">
-				<input id='store_id' name='store_id' type= "hidden" value= "{{ store.getId }}">
-				<label for 'brand_id'>Brand Name</label>
-				<select id="brand_id" name="brand_id" type="text">
-					{% for brand in all_brands %}
-						<option value="{{ brand.getId }}"> {{ brand.getBrandName }} </option>
-					{% endfor %}
-				</select>
-				<button type="submit">Submit</button>
-			</form>
-			
+<h3>GET: displays ALL stores</h3>
 	<button><a href="/">Home</a></button>
 </div>	
 </body>

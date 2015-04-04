@@ -6,18 +6,6 @@
 </head>
 <body>
 <div class="container">
-<h1>Shoe Store</h1>
-<h3>Add a new brand:</h3>
-	<form action="/add_brand" method= "post">
-		<label for 'brand_name'>Brand Name</label>
-		<input id="brand_name" name="brand_name" type="text" autofocus="autofocus">
-
-		<button type="submit">Submit</button>
-	</form>
-	{% for brand in brands %}
-		<li><a href="/brands/ {{ brand.getId }}">{{ brand.getBrandname}}</a></li>
-		{% endfor %}
-	<br>
 
 	<button><a href="/">Home</a></button>
 </div>	

@@ -6,19 +6,7 @@
 </head>
 <body>
 <div class="container">
-<h1>Shoe Store</h1>
-<h3>Add a new store:</h3>
-	<form action="/add_store" method= "post">
-		<label for 'store_id'>Store Name</label>
-		<input id="store_id" name="store_id" type="text" autofocus="autofocus">
 
-		<button type="submit">Submit</button>
-	</form>
-
-	{% for store in stores %}
-		<li><a href="/stores/ {{ store.getId }}">{{ store.getStoreName }}</a></li>
-		{% endfor %}
-	<br>
 	<button><a href="/">Home</a></button>
 </div>	
 </body>
