@@ -28,7 +28,8 @@
 //READ- displays ALL brands in DB
     $app->get("/brands", function () use ($app)
     {
-        return $app['twig']->render('brands.twig');
+
+        return $app['twig']->render('brands.twig', array('brands'=>Brand::getAll()));
     });
 
 //CREATE a new brand- receives ALL info from the form (add a brand) on the brands page - adds to DB

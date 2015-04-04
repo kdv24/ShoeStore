@@ -6,7 +6,30 @@
 </head>
 <body>
 <div class="container">
-<h3>GET: displays ALL brands</h3>
+<h3>GET: displays ALL brands<br>
+	POST: has form to add a new brand to DB</h3>
+
+<h1><a href='/'>Shoes shoes shoes!</a></h1>
+
+<h3>Brands:</h3>
+	{% if brands is not empty %}
+		<ul>
+		{% for brand in brands %}
+			<li>{{ brand.getName }}</li>
+		}
+		{% endfor %}
+		</ul>
+	{% else %}
+		<h4>There are no brands entered yet.</h4>
+	{% endif %}
+
+	<form action="/add_brand">
+		<label for="brand_name">Add a brand</label>
+		<input id="brand_name" name="brand_name" class="form-class" type="text">
+		<button type="submit">Submit</button>
+	</form>
+
+<br>
 	<button><a href="/">Home</a></button>
 </div>	
 </body>
