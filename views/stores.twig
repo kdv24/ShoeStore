@@ -6,7 +6,35 @@
 </head>
 <body>
 <div class="container">
-<h3>GET: displays ALL stores</h3>
+<h3>GET: displays ALL stores<br>
+	POST: has form to add a new store to DB<br>
+	DELETE: has delete button
+</h3>
+
+
+<h1><a href='/'>Shoes shoes shoes!</a></h1>
+
+<h3>Stores:</h3>
+	{% if stores is not empty %}
+		<ul>
+		{% for store in stores %}
+			<li>{{ store.getstoreName }}</li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<h4>There are no stores entered yet.</h4>
+	{% endif %}
+
+	<form action="/add_store" method="post">
+		<label for="store_name">Add a store</label>
+		<input id="store_name" name="store_name" class="form-class" type="text" autofocus="autofocus">
+		<button type="submit">Submit</button>
+	</form>
+<br>
+	<form action="/delete_stores" method="post">
+		<button type="submit">Delete All Stores</button>
+	</form>	
+<br>
 	<button><a href="/">Home</a></button>
 </div>	
 </body>

@@ -33,7 +33,7 @@
     });
 
 //CREATE a new brand- receives ALL info from the form (add a brand) on the brands page - adds to DB
-    $app->post("/brands", function () use ($app)
+    $app->post("/add_brand", function () use ($app)
     {
         $brand_name=$_POST['brand_name'];
         $brand = new Brand($brand_name);
@@ -87,19 +87,24 @@
 //READ- displays ALL stores in DB
     $app->get("/stores", function () use ($app)
     {
-        return $app['twig']->render('stores.twig');
+        return $app['twig']->render('stores.twig', array('stores' => Store::getAll()));
     });
+
 
 //CREATE a new STORE- receives ALL info from the form (add a store) on the stores page - adds to DB
     $app->post("/add_store", function () use ($app)
     {
-        return $app['twig']->render('stores.twig');
+        $store_name=$_POST['store_name'];
+        $store = new Store($store_name);
+        $store->save();
+        return $app['twig']->render('stores.twig', array('stores' => Store::getAll()));
     });
 
 //DELETE- deletes ALL stores from DB
-    $app->delete("/delete_stores", function ($id) use ($app)
+    $app->post("/delete_stores", function () use ($app)
     {
-        return $app['twig']->render('stores.twig');
+        Store::deleteAll();
+        return $app['twig']->render('stores.twig', array('stores' => Store::getAll()));
     });
 
 //READ- displays ONE store and any brands associated with that store - also displays option to add a brand
