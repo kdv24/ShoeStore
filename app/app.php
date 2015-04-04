@@ -23,5 +23,17 @@
         return $app['twig']->render('/index.twig');
     });
 
+    //displays all brands
+    $app->get("/brands", function () use ($app)
+    {
+        return $app['twig']->render('/brands.twig');
+    });
+
+    //displays one brand and all stores associated with that brand
+    $app->get("/brand", function () use ($app)
+    {
+        return $app['twig']->render('/brand.twig');
+    });
+
     return $app;
 ?>
