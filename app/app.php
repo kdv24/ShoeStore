@@ -29,8 +29,20 @@
         return $app['twig']->render('/brands.twig');
     });
 
+    //receives all info from the form (add a brand) on the brands page
+    $app->post("/brands", function () use ($app)
+    {
+        return $app['twig']->render('/brands.twig');
+    });
+
     //displays one brand and all stores associated with that brand
     $app->get("/brand", function () use ($app)
+    {
+        return $app['twig']->render('/brand.twig');
+    });
+
+    //receives all info from the form (add a store to the brand) on the brand page
+    $app->post("/brand", function () use ($app)
     {
         return $app['twig']->render('/brand.twig');
     });
