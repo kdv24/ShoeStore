@@ -8,6 +8,18 @@
 <div class="container">
 <h3>GET: displays ONE brand and all stores associated with that brand</h3>
 
+<h1><a href='/'>Shoes shoes shoes!</a></h1>
+
+		<h3>{{ store.getBrandName }}</h3>
+
+	{% if brands is not empty %}
+		{% for brand in brands %}
+			{{ brand.getBrandName }}
+		{% endfor %}
+	{% endif%}
+<br>
+	<button><a href="/brands">List of all brands</a></button>
+<br>
 	<button><a href="/">Home</a></button>
 </div>	
 </body>

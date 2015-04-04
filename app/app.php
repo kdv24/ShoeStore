@@ -110,14 +110,18 @@
 //READ- displays ONE store and any brands associated with that store - also displays option to add a brand
     $app->get("/store/{id}", function ($id) use ($app)
     {
-        return $app['twig']->render('store.twig');
+        $current_store = Store::find($id);
+        return $app['twig']->render('store.twig', array('store' => $current_store, 'stores' => Store::getAll(), 'brands' => Brand::getAll(), 'all_brands' => Brand::getAll()));
     });
 
 //CREATE- receives info from the form (add brand selected on GET route to the store) on the ONE store page- CAREFUL ON THIS ONE: store to brand or brand to store   
-    //? post("/add_brand")?
+    //? post("/add_brand")? do I need the id stuff in the route?
     $app->post("/store/{id}", function ($id) use ($app)
     {
-        return $app['twig']->render('store.twig');
+        $current_store = Store::find($_POST['store_id']);
+        $brand = Brand::find($_POST['brand_id']);
+        $current_store->addBrand($brand);
+        return $app['twig']->render('store.twig', array('brands' => $current_store->getBrands(), 'store' => $current_store, 'all_brands' => Brand::getAll()));
     });
 
 //DELETE- deletes a specific brand from ONE store's list
