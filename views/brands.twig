@@ -6,36 +6,37 @@
 </head>
 <body>
 <div class="container">
-<h1>Shoe Store</h1>
-<h3>{{ brand.getBrandName }} is carried at the following stores:</h3>
-	{% if matching_stores is not empty %}
-	<ul>
-			{% for matching_store in matching_stores %}
-			<li><a href="/stores/ {{matching_store.getId }}"> {{ matching_store.getStoreName }}</a>
-			<form action="/stores{id}/delete" method="post">
-				<input name="_method" type="hidden" value="delete">
-				<input value="{{ brand.getId }}" id="brand_id" name="brand_id" type="hidden">
-				<input value="{{ matching_store.getId }}" id="store_id" name="store_id" type="hidden">
-				<button type="submit" class="btn">Delete this store</button>
-			</form>	
-			</li>
-			{% endfor %}
-	</ul>
+<h3>GET: displays ALL brands<br>
+	POST: has form to add a new brand to DB<br>
+	DELETE: has delete button
+</h3>
+
+
+<h1><a href='/'>Shoes shoes shoes!</a></h1>
+
+<h3>Brands:</h3>
+	{% if brands is not empty %}
+		<ul>
+		{% for brand in brands %}
+			<li><a href='/brand/{{ brand.getId }}'>{{ brand.getBrandName }}</a></li>
+		{% endfor %}
+		</ul>
 	{% else %}
-	<p> There are no stores associated with this shoe.</p>
+		<h4>There are no brands entered yet.</h4>
 	{% endif %}
 
-	<form action="/add_store" method= "post">
-		<input type= "hidden" value= "{{ brand.getId }}">
-		<label for 'store_name'>Store Name</label>
-		<input id="store_name" name="store_name" type="text" autofocus="autofocus">
-
+	<form action="/add_brand" method="post">
+		<label for="brand_name">Add a brand</label>
+		<input id="brand_name" name="brand_name" class="form-class" type="text" autofocus="autofocus">
 		<button type="submit">Submit</button>
 	</form>
+<br>
 	<form action="/delete_brands" method="post">
-		<button type= 'submit'>Delete All Brands</button>	
+		<button type="submit">Delete All Brands</button>
 	</form>	
-
+<br>
+	<button><a href="/stores">List of stores</a></button>
 	<button><a href="/">Home</a></button>
 </div>	
 </body>
+</html>

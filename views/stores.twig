@@ -6,38 +6,36 @@
 </head>
 <body>
 <div class="container">
-<h1>Shoe Store</h1>
-<h3>{{ store.getStoreName }} carries the following shoes:</h3>
-	{% if matching_brands is not empty %}
-	<ul>
-			{% for matching_brand in matching_brands %}
-			<li><a href ="/brands/{{ matching_brand.getId }}"> {{ matching_brand.getBrandName }}</a>
-				<form action ="/delete_brand" method="post">
-					<input name="_method" type="hidden" value="delete">
-					<input value="{{ matching_brand.getId }}" id="brand_id" name="brand_id" type="hidden">
-					<input value="{{ store.getId }}" id= "store_id" name="store_id" type="hidden">
-					<button type="submit" class="btn">Delete Brand</button>
-				</form>	
-			</li>
-			{% endfor %}
-	</ul>
-	{% else %}
-	<p> There are no shoe brands associated with this store.</p>
-	{% endif %}
-	
+<h3>GET: displays ALL stores<br>
+	POST: has option to add a new store to DB<br>
+	DELETE: has delete button
+</h3>
 
-		
-			<form action="/store_carries" method= "post">
-				<input id='store_id' name='store_id' type= "hidden" value= "{{ store.getId }}">
-				<label for 'brand_id'>Brand Name</label>
-				<select id="brand_id" name="brand_id" type="text">
-					{% for brand in all_brands %}
-						<option value="{{ brand.getId }}"> {{ brand.getBrandName }} </option>
-					{% endfor %}
-				</select>
-				<button type="submit">Submit</button>
-			</form>
-			
+
+<h1><a href='/'>Shoes shoes shoes!</a></h1>
+
+<h3>Stores:</h3>
+	{% if stores is not empty %}
+		<ul>
+		{% for store in stores %}
+			<li><a href='/store/{{ store.getId }}'>{{ store.getStoreName }}</a></li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<h4>There are no stores entered yet.</h4>
+	{% endif %}
+
+	<form action="/add_store" method="post">
+		<label for="store_name">Add a store</label>
+		<input id="store_name" name="store_name" class="form-class" type="text" autofocus="autofocus">
+		<button type="submit">Submit</button>
+	</form>
+<br>
+	<form action="/delete_stores" method="post">
+		<button type="submit">Delete All Stores</button>
+	</form>	
+<br>
+	<button><a href="/brands">List of brands</button>
 	<button><a href="/">Home</a></button>
 </div>	
 </body>

@@ -6,36 +6,24 @@
 </head>
 <body>
 <div class="container">
-<h1>Shoe Store</h1>
-<h3>{{ store.getStoreName }} carries the following shoes:</h3>
-	{% if matching_brands is not empty %}
-	<ul>
-			{% for matching_brand in matching_brands %}
-			<li> {{ matching_brand.getBrandName }}</li>
-			{% endfor %}
-	</ul>
-	{% else %}
-	<p> There are no shoe brands associated with this store.</p>
-	{% endif %}
-	
+	<h3>GET: displays store to be updated or deleted</h3>
 
-		
-			<form action="/stores/{id}" method= "post">
-				<input id='store_id' name='store_id' type= "patch" value= "{{ store.getId }}">
-				<label for 'brand_id'>Brand Name</label>
-				<input id="brand_id" name="brand_id" type="text" autofocus="autofocus">
-				
+	<h1><a href='/'>Shoes shoes shoes!</a></h1>
 
-				<button type="submit">Submit</button>
-			</form>
-			
+		<h3>{{ store.getStoreName }}</h3>
 
-	
-	<p> need form to add a new brand which will need a post route that will render back to stores/{id}.html and still use  add Brand and get Brand if matching Store id</p>
-	<p> need a button to delete the specific store deleteStore() (and all brands associated with it or only show if Store id is not empty?) - will need a delete route that will render back to index.html </p>
+		<form action="/store_delete" method="post">
+			<input name="_method" type="hidden" value="delete">
+			<input name="store_id" id="store_id" value="{{ store.getId }}" type="hidden">
+			<button class="btn" type="submit">Delete store</button>
+		<form>	
+
+<br>
+<br>
+	<button><a href="/stores">List of all stores</a></button>
+<br>
+<br>
 	<button><a href="/">Home</a></button>
 </div>	
 </body>
 </html>
-
-FIX ME! I'm the edit a store page

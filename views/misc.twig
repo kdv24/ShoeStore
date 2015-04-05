@@ -1,0 +1,15 @@
+FROM STORE_EDIT.TWIG
+
+		<form action="/delete_brand_from_store" method="post">
+			<input name="_method" type="hidden" value="delete">
+			<label for="store_id">Remove brand from store</label>
+			<input value="{{ brand.getId }}" name="brand_id" id="brand_id" type="hidden">
+		
+			<select id="store_id" name="store_id">
+				{% for store in stores %}
+					<option value="{{ store.getId }}">{{ store.getName }}</option>
+				{% endfor %}	
+			</select>	
+			<br>
+			<button type="submit">Remove brand from store</button>
+		</form>
