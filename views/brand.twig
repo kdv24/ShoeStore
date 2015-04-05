@@ -10,17 +10,17 @@
 	POST: has option to add a new brand to DB<br>
 	DELETE: has delete button</h3>
 
-<h1><a href='/'>Shoes shoes shoes!</a></h1>
+	<h1><a href='/'>Shoes shoes shoes!</a></h1>
 
-<h3>{{ brand.getBrandName }}:</h3>
-	
-	{% if stores is not empty %}
-		{% for store in stores %}
-		<ul>
-			<li>{{ store.getStoreName }}</li>
-		</ul>	
-		{% endfor %}
-	{% endif%}
+	<h3>{{ brand.getBrandName }}:</h3>
+		<h5><a href="/store/{{ store.getId }}/edit">Update or delete this store</a></h5>
+		{% if stores is not empty %}
+			{% for store in stores %}
+			<ul>
+				<li>{{ store.getStoreName }}</li>
+			</ul>	
+			{% endfor %}
+		{% endif%}
 
 
 	<form action="/brand/{id}" method="post">

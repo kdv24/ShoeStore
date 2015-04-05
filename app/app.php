@@ -66,8 +66,7 @@
     });
 
 //DELETE- delete ONE brand by {id} in DB 
-    //? post(/delete_brand)
-    $app->delete("/brand/{id}/delete", function ($id) use ($app)
+    $app->delete("/brand_delete", function ($id) use ($app)
     {
         return $app['twig']->render('brands.twig');
     });
@@ -129,22 +128,28 @@
     });
 
 //DELETE- deletes a specific brand from ONE store's list
-    $app->delete("/delete_brand_from_store", function () use ($app)
-    {
-        return $app['twig']->render('store.twig');
-    });
+    // $app->delete("/delete_brand_from_store", function () use ($app)
+    // {
+    //     $current_store = Store::find($_POST['store_id']);
+    //     $brand = Brand::find($_POST['brand_id']);
+    //     $current_store->deleteBrand($brand);
+    //     return $app['twig']->render('store.twig', array('brand' => $brand));
+    // });
 
 //DELETE- deletes ONE store by {id} - removes from DB 
     //? post(/delete_store)
-    $app->delete("/store/{id}/delete", function ($id) use ($app)
-    {
-        return $app['twig']->render('stores.twig');
+    $app->delete("/store_delete", function () use ($app)
+    {   
+        $current_store = Store::find($_POST['store_id']);
+        $current_store->deleteStore();
+        return $app['twig']->render('stores.twig', array('stores' => Store::getAll()));
     });
 
 //READ- displays ONE store to be updated or deleted- maybe don't really need GET unless this is where form displays to enter changed info? could also put that on store page with path to /store{id}/edit and never display store_edit.twig?
     $app->get("/store/{id}/edit", function ($id) use ($app)
-    {
-        return $app['twig']->render('store_edit.twig');
+    {   
+        $current_store = Store::find($id);
+        return $app['twig']->render('store_edit.twig', array ('store' => $current_store, 'brands' => Brand::getAll(), 'stores' => Store::getAll()));
     });
 
 //UPDATE- updates the ONE specific store name using id from store{id} - changes name in DB

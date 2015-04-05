@@ -6,7 +6,23 @@
 </head>
 <body>
 <div class="container">
-<h3>GET: displays store to be updated or deleted</h3>
+	<h3>GET: displays store to be updated or deleted</h3>
+
+	<h1><a href='/'>Shoes shoes shoes!</a></h1>
+
+		<h3>{{ store.getStoreName }}</h3>
+
+		<form action="/store_delete" method="post">
+			<input name="_method" type="hidden" value="delete">
+			<input name="store_id" id="store_id" value="{{ store.getId }}" type="hidden">
+			<button class="btn" type="submit">Delete store</button>
+		<form>	
+
+<br>
+<br>
+	<button><a href="/stores">List of all stores</a></button>
+<br>
+<br>
 	<button><a href="/">Home</a></button>
 </div>	
 </body>
