@@ -51,14 +51,18 @@
 //READ- displays ONE brand and any stores associated with that brand($id) - also displays option to add store 
     $app->get("/brand/{id}", function ($id) use ($app)
     {
-        return $app['twig']->render('brand.twig');
+        $current_brand = Brand::find($id);
+        return $app['twig']->render('brand.twig', array('brand' => $current_brand, 'all_stores' => Store::getAll(), 'stores' => Store::getAll()));
     });
 
 //CREATE- receives info from the form in GET route (add a store to the brand) on the ONE brand page  
     //? post(/add_store)
     $app->post("/brand/{id}", function ($id) use ($app)
     {
-        return $app['twig']->render('brand.twig');
+        $current_brand = Brand::find($_POST['brand_id']);
+        $store = Store::find($_POST['store_id']);
+        $current_brand->addStore($store);
+        return $app['twig']->render('brand.twig', array('brand' => $current_brand, 'all_stores' => Store::getAll(), 'store' => $store, 'stores' => $current_brand->getStores())); 
     });
 
 //DELETE- delete ONE brand by {id} in DB 
@@ -111,7 +115,7 @@
     $app->get("/store/{id}", function ($id) use ($app)
     {
         $current_store = Store::find($id);
-        return $app['twig']->render('store.twig', array('store' => $current_store, 'stores' => Store::getAll(), 'brands' => Brand::getAll(), 'all_brands' => Brand::getAll()));
+        return $app['twig']->render('store.twig', array('store' => $current_store, 'stores' => Store::getAll(), 'brands' => $current_store->getBrands(), 'all_brands' => Brand::getAll()));
     });
 
 //CREATE- receives info from the form (add brand selected on GET route to the store) on the ONE store page- CAREFUL ON THIS ONE: store to brand or brand to store   

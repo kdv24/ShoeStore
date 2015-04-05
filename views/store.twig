@@ -18,7 +18,7 @@
 			{% endfor %}
 		{% endif%}
 
-		<h4>Add a brand {{ store.getStoreName }} carries</h4>
+
 		<form action="/store/{id}" method="post">
 			<label for='brand_id'>Add a brand {{ store.getStoreName }} carries</label>
 			<input value="{{ store.getId }}" id="store_id" name="store_id" type="hidden">
