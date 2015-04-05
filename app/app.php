@@ -71,20 +71,6 @@
         return $app['twig']->render('brands.twig');
     });
 
-//NOT NECESSARY FOR THIS ASSIGNMENT
-    //READ- displays brand to be updated or deleted- maybe don't really need GET?  see note with store patch below
-    // $app->get("/brand/{id}/edit", function ($id) use ($app)
-    // {
-    //     return $app['twig']->render('/brand_edit.twig');
-    // });
-
- 
-    //UPDATE- updates the specific brand by id from the brand{id}.
-    // $app->patch("/brand/{id}/edit", function ($id) use ($app)
-    // {
-    //     return $app['twig']->render('brand.twig');
-    // });
-
 //*************STORES**************
 
 //READ- displays ALL stores in DB
@@ -153,9 +139,12 @@
     });
 
 //UPDATE- updates the ONE specific store name using id from store{id} - changes name in DB
-    $app->patch("/store/{id}/edit", function ($id) use ($app)
+    $app->patch("/store_update/{id}", function ($id) use ($app)
     {
-        return $app['twig']->render('store.twig');;
+        $current_store = Store::find($id);
+        $new_store_name= $_POST['store_name'];
+        $current_store->updateStore($new_store_name);
+        return $app['twig']->render('stores.twig', array('stores' => Store::getAll()));
     });
 
     return $app;

@@ -6,24 +6,33 @@
 </head>
 <body>
 <div class="container">
-	<h3>GET: displays store to be updated or deleted</h3>
-
-	<h1><a href='/'>Shoes shoes shoes!</a></h1>
-
+<header class="jumbotron">
+<h1><a href='/'>Shoes shoes shoes!</a></h1>
+</header>
+	{% if stores is not empty%}
 		<h3>{{ store.getStoreName }}</h3>
 
+		<form action="/store_update/{{ store.getId }}" method="post">
+			<input name="_method" type="hidden" value="patch">
+			<input name="store_name" id="store_name" type="text">
+			<button type="submit">Update store name</button>
+		</form>
+<br>
 		<form action="/store_delete" method="post">
 			<input name="_method" type="hidden" value="delete">
-			<input name="store_id" id="store_id" value="{{ store.getId }}" type="hidden">
+			<input name="store_id" id="store_id" type="hidden">
 			<button class="btn" type="submit">Delete store</button>
 		<form>	
-
+	{% else %}
+	<h4><a href="/stores">Add a new store</a></h4>
+	{% endif %}
 <br>
 <br>
 	<button><a href="/stores">List of all stores</a></button>
-<br>
-<br>
+
 	<button><a href="/">Home</a></button>
 </div>	
 </body>
 </html>
+
+		
