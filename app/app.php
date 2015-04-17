@@ -52,7 +52,7 @@
     $app->get("/brand/{id}", function ($id) use ($app)
     {
         $current_brand = Brand::find($id);
-        return $app['twig']->render('brand.twig', array('brand' => $current_brand, 'all_stores' => Store::getAll(), 'stores' => Store::getAll()));
+        return $app['twig']->render('brand.twig', array('brand' => $current_brand, 'all_stores' => Store::getAll(), 'stores' => $current_brand->getStores(), 'all_brands' => Brand::getAll()));
     });
 
 //CREATE- receives info from the form in GET route (add a store to the brand) on the ONE brand page
