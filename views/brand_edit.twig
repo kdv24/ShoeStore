@@ -9,20 +9,18 @@
 <header class="jumbotron">
 <h1><a href='/'>Shoes shoes shoes!</a></h1>
 </header>
-		<h3>{{ brand.getBrandName }}</h3>
-
-		<form action="/brand_delete" method="post">
-			<input name="_method" type="hidden" value="delete">
-			<input name="brand_id" id="brand_id" value="{{ brand.getId }}" type="hidden">
-			<button class="btn" type="submit">Delete brand</button>
-		<form>	
-
+	<h3>{{ brand.getBrandName }}</h3>
+	<form action="/brand_delete" method="post">
+		<input name="_method" type="hidden" value="delete">
+		<input name="brand_id" id="brand_id" value="{{ brand.getId }}" type="hidden">
+		<button class="btn" type="submit">Delete brand</button>
+	<form>	
 <br>
 <br>
 	<button><a href="/stores">List of all brands</a></button>
 <br>
 <br>
 	<button><a href="/">Home</a></button>
-</div>	
+</div>
 </body>
 </html>

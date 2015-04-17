@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<title>Shoe Store</title>
 </head>
 <body>
-<div class="container">
-<header class="jumbotron">
-<h1><a href='/'>Shoes shoes shoes!</a></h1>
-</header>
-	<h3>{{ store.getStoreName }}</h3>
-	<h5><a href="/store/{{ store.getId }}/edit">Update or delete this store</a></h5>
-	{% if brands is not empty %}
-		{% for brand in brands %}
-			<ul>{{ brand.getBrandName }}</ul>
-		{% endfor %}
-	{% endif%}
-
-
-	<form action="/store/{id}" method="post">
-		<label for='brand_id'>Add a brand {{ store.getStoreName }} carries</label>
-		<input value="{{ store.getId }}" id="store_id" name="store_id" type="hidden">
-		<select id="brand_id" name="brand_id">
-			{% for brand in all_brands %}
-				<option value="{{ brand.getId }}"> {{ brand.getBrandName }}</option>
-			{% endfor %}
-		</select>
-		<br>
-		<button type="submit">Submit</button>
-	</form>
-<br>
-
-	<button><a href="/stores">List of all stores</a></button>
-
-	<button><a href="/">Home</a></button>
-</div>
+  <div class="container">
+  <header class="jumbotron">
+    <h1><a href='/'>Shoes shoes shoes!</a></h1>
+  </header>
+  	<h3>{{ store.getStoreName }}</h3>
+  	<h5><a href="/store/{{ store.getId }}/edit">Update or delete this store</a></h5>
+  	{% if brands is not empty %}
+  		{% for brand in brands %}
+  			<ul>{{ brand.getBrandName }}</ul>
+  		{% endfor %}
+  	{% endif%}
+  	<form action="/store/{id}" method="post">
+  		<label for='brand_id'>Add a brand {{ store.getStoreName }} carries</label>
+  		<input value="{{ store.getId }}" id="store_id" name="store_id" type="hidden">
+  		<select id="brand_id" name="brand_id">
+  			{% for brand in all_brands %}
+  				<option value="{{ brand.getId }}"> {{ brand.getBrandName }}</option>
+  			{% endfor %}
+  		</select>
+  		<br>
+  		<button type="submit">Submit</button>
+  	</form>
+    <br>
+  	<button><a href="/stores">List of all stores</a></button>
+  	<button><a href="/">Home</a></button>
+  </div>
 </body>
 </html>

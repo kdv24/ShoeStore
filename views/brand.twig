@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<title>Shoe Store</title>
 </head>
 <body>
-<div class="container">
-<header class="jumbotron">
-<h1><a href='/'>Shoes shoes shoes!</a></h1>
-</header>	
-	<h3>{{ brand.getBrandName }}</h3><h4> can be found at the following stores:</h4>
-		{% if stores is not empty %}
-			{% for store in stores %}
-			<ul>
-				<li><a href="/store/{{ store.getId }}/edit">{{ store.getStoreName }}</a></li>
-			</ul>	
-			{% endfor %}
-		{% endif%}
-
-
-	<form action="/brand/{id}" method="post">
-		<label for='store_id'>Add a store where {{ brand.getBrandName }} is carried</label>
-		<input value="{{ brand.getId }}" id="brand_id" name="brand_id" type="hidden">
-		<select id="store_id" name="store_id">
-			{% for store in all_stores %}
-				<option value="{{ store.getId }}"> {{ store.getStoreName }}</option>
-			{% endfor %}
-		</select>
-		<br>
-		<button type="submit">Submit</button>
-	</form>
-<br>
-	<button><a href="/brands">List of all brands</a></button>
-
-	<button><a href="/">Home</a></button>
-</div>	
+  <div class="container">
+    <header class="jumbotron">
+    <h1><a href='/'>Shoes shoes shoes!</a></h1>
+    </header>
+    	<h3>{{ brand.getBrandName }}</h3><h4> can be found at the following stores:</h4>
+    		{% if stores is not empty %}
+    			{% for store in stores %}
+    			<ul>
+    				<li><a href="/store/{{ store.getId }}/edit">{{ store.getStoreName }}</a></li>
+    			</ul>
+    			{% endfor %}
+    		{% endif%}
+    	<form action="/brand/{id}" method="post">
+    		<label for='store_id'>Add a store where {{ brand.getBrandName }} is carried</label>
+    		<input value="{{ brand.getId }}" id="brand_id" name="brand_id" type="hidden">
+    		<select id="store_id" name="store_id">
+    			{% for store in all_stores %}
+    				<option value="{{ store.getId }}"> {{ store.getStoreName }}</option>
+    			{% endfor %}
+    		</select>
+    		<br>
+    		<button type="submit">Submit</button>
+    	</form>
+      <br>
+    	<button><a href="/brands">List of all brands</a></button>
+    	<button><a href="/">Home</a></button>
+  </div>
 </body>
 </html>

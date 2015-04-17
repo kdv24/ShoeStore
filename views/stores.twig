@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<title>Shoe Store</title>
 </head>
 <body>
-<div class="container">
-<header class="jumbotron">
-<h1><a href='/'>Shoes shoes shoes!</a></h1>
-</header>
-<h3>Stores:</h3>
-	{% if stores is not empty %}
-		<ul>
-		{% for store in stores %}
-			<li><a href='/store/{{ store.getId }}'>{{ store.getStoreName }}</a></li>
-		{% endfor %}
-		</ul>
-	{% else %}
-		<h4>There are no stores entered yet.</h4>
-	{% endif %}
-
-	<form action="/add_store" method="post">
-		<label for="store_name">Add a store</label>
-		<input id="store_name" name="store_name" class="form-class" type="text" autofocus="autofocus">
-		<button type="submit">Submit</button>
-	</form>
-<br>
-	<form action="/delete_stores" method="post">
-		<button type="submit">Delete All Stores</button>
-	</form>	
-<br>
-	<button><a href="/brands">List of brands</button>
-	<button><a href="/">Home</a></button>
-</div>	
+  <div class="container">
+  <header class="jumbotron">
+    <h1><a href='/'>Shoes shoes shoes!</a></h1>
+  </header>
+  <h3>Stores:</h3>
+  	{% if stores is not empty %}
+  		<ul>
+  		{% for store in stores %}
+  			<li><a href='/store/{{ store.getId }}'>{{ store.getStoreName }}</a></li>
+  		{% endfor %}
+  		</ul>
+  	{% else %}
+  		<h4>There are no stores entered yet.</h4>
+  	{% endif %}
+  	<form action="/add_store" method="post">
+  		<label for="store_name">Add a store</label>
+  		<input id="store_name" name="store_name" class="form-class" type="text" autofocus="autofocus">
+  		<button type="submit">Submit</button>
+  	</form>
+    <br>
+  	<form action="/delete_stores" method="post">
+  		<button type="submit">Delete All Stores</button>
+  	</form>
+    <br>
+  	<button><a href="/brands">List of brands</button>
+  	<button><a href="/">Home</a></button>
+  </div>
 </body>
 </html>
