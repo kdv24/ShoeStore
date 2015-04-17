@@ -9,11 +9,8 @@ This app holds a dynamic list of local shoe stores and lists the brands of shoes
 1.  PHP must be installed on your machine (consult other sources for tutorials)
 
 2.  In your terminal, type:
-	a.  mkdir <folder name>
-	b.  cd <folder name>
-	c.  git clone https://github.com/kdv24/ShoeStore.git .
-	d.  cd web
-	e.  php -S localhost:8000
+	a.  Clone this repository- https://github.com/kdv24/ShoeStore.git .
+	b.  Start your php server in the web directory (e.g., by typing in the command php -S localhost:8000)
 
 3.  Open a new tab in terminal and type:
 	a.  psql
@@ -23,7 +20,7 @@ This app holds a dynamic list of local shoe stores and lists the brands of shoes
 
 3.  In a web browser window, type localhost:8000
 
-4.  Now you should be able to see the Shoe Store.	
+4.  Now you should be able to see the Shoe Store.
 
 
 If the import doesn't work or you want to also view the test database and you need to recreate the database in psql, you can also type in the following commands:
@@ -38,4 +35,3 @@ CREATE TABLE brands_stores (id serial PRIMARY KEY, brand_id int, store_id int);
 
 Copyright (c) 2015 Kelly de Vries
 #license-mit
-
