@@ -48,24 +48,24 @@
         return $app['twig']->render('brands.twig', array('brands' => Brand::getAll()));
     });
 
-//READ- displays ONE brand and any stores associated with that brand($id) - also displays option to add store 
+//READ- displays ONE brand and any stores associated with that brand($id) - also displays option to add store
     $app->get("/brand/{id}", function ($id) use ($app)
     {
         $current_brand = Brand::find($id);
         return $app['twig']->render('brand.twig', array('brand' => $current_brand, 'all_stores' => Store::getAll(), 'stores' => Store::getAll()));
     });
 
-//CREATE- receives info from the form in GET route (add a store to the brand) on the ONE brand page  
+//CREATE- receives info from the form in GET route (add a store to the brand) on the ONE brand page
     //? post(/add_store)
     $app->post("/brand/{id}", function ($id) use ($app)
     {
         $current_brand = Brand::find($_POST['brand_id']);
         $store = Store::find($_POST['store_id']);
         $current_brand->addStore($store);
-        return $app['twig']->render('brand.twig', array('brand' => $current_brand, 'all_stores' => Store::getAll(), 'store' => $store, 'stores' => $current_brand->getStores())); 
+        return $app['twig']->render('brand.twig', array('brand' => $current_brand, 'all_stores' => Store::getAll(), 'store' => $store, 'stores' => $current_brand->getStores()));
     });
 
-//DELETE- delete ONE brand by {id} in DB 
+//DELETE- delete ONE brand by {id} in DB
     $app->delete("/brand_delete", function ($id) use ($app)
     {
         return $app['twig']->render('brands.twig');
@@ -103,7 +103,7 @@
         return $app['twig']->render('store.twig', array('store' => $current_store, 'stores' => Store::getAll(), 'brands' => $current_store->getBrands(), 'all_brands' => Brand::getAll()));
     });
 
-//CREATE- receives info from the form (add brand selected on GET route to the store) on the ONE store page- CAREFUL ON THIS ONE: store to brand or brand to store   
+//CREATE- receives info from the form (add brand selected on GET route to the store) on the ONE store page- CAREFUL ON THIS ONE: store to brand or brand to store
     //? post("/add_brand")? do I need the id stuff in the route?
     $app->post("/store/{id}", function ($id) use ($app)
     {
@@ -122,18 +122,18 @@
     //     return $app['twig']->render('store.twig', array('brand' => $brand));
     // });
 
-//DELETE- deletes ONE store by {id} - removes from DB 
+//DELETE- deletes ONE store by {id} - removes from DB
     //? post(/delete_store)
-    $app->delete("/store_delete", function () use ($app)
-    {   
-        $current_store = Store::find($_POST['store_id']);
+    $app->delete("/store_delete/{id}", function ($id) use ($app)
+    {
+        $current_store = Store::find($id);
         $current_store->deleteStore();
         return $app['twig']->render('stores.twig', array('stores' => Store::getAll()));
     });
 
 //READ- displays ONE store to be updated or deleted- maybe don't really need GET unless this is where form displays to enter changed info? could also put that on store page with path to /store{id}/edit and never display store_edit.twig?
     $app->get("/store/{id}/edit", function ($id) use ($app)
-    {   
+    {
         $current_store = Store::find($id);
         return $app['twig']->render('store_edit.twig', array ('store' => $current_store, 'brands' => Brand::getAll(), 'stores' => Store::getAll()));
     });

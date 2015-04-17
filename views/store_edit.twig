@@ -18,11 +18,11 @@
 			<button type="submit">Update store name</button>
 		</form>
 <br>
-		<form action="/store_delete" method="post">
+		<form action="/store_delete/{{ store.getId }}" method="post">
 			<input name="_method" type="hidden" value="delete">
 			<input name="store_id" id="store_id" type="hidden">
 			<button class="btn" type="submit">Delete store</button>
-		<form>	
+		<form>
 	{% else %}
 	<h4><a href="/stores">Add a new store</a></h4>
 	{% endif %}
@@ -31,8 +31,6 @@
 	<button><a href="/stores">List of all stores</a></button>
 
 	<button><a href="/">Home</a></button>
-</div>	
+</div>
 </body>
 </html>
-
-		
