@@ -1,11 +1,15 @@
-##Shoe Store Brand Inventory##
+##Shoe Store Brand Inventory
+
+###By Kelly de Vries
+
+####3.31.15
+
+####Description
 
 This app holds a dynamic list of local shoe stores and lists the brands of shoes each store carries.  When a user views a single store, the app shows a list of all shoe brands carried by that store.  Users can add shoe brands to that particular store list or, when viewing a single brand, can add additional stores where that brand is carried.
 
-#By Kelly de Vries#
-#3.31.15
+###Setup
 
-#Setup instructions:#
 1.  PHP must be installed on your machine (consult other sources for tutorials)
 
 2.  In your terminal, type:
