@@ -25,14 +25,14 @@ This app holds a dynamic list of local shoe stores and lists the brands of shoes
 
 If the import doesn't work or you want to also view the test database and you need to recreate the database in psql, you can also type in the following commands:
 
-'''sql
+
 CREATE DATABASE shoes;
 \c SHOES;
 CREATE TABLE brands (id serial PRIMARY KEY, brand_name varchar);
 CREATE TABLE stores (id serial PRIMARY KEY, store_name varchar);
 CREATE DATABASE shoes_test WITH TEMPLATE shoes;
 CREATE TABLE brands_stores (id serial PRIMARY KEY, brand_id int, store_id int);
-'''
+
 
 
 ####Technologies
